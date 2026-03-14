@@ -48,12 +48,12 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);color:var(--text-heading);font
 
 /* Hero */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1540555700478-4be289fbec6c?w=1600&q=80') center/cover no-repeat}
+.hero-bg-overlay{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(10,9,8,0.7) 0%,rgba(10,9,8,0.5) 40%,rgba(10,9,8,0.6) 70%,rgba(10,9,8,0.85) 100%),
   radial-gradient(ellipse at 20% 50%,rgba(184,134,11,0.08) 0%,transparent 50%),
-  radial-gradient(ellipse at 80% 20%,rgba(45,106,79,0.06) 0%,transparent 50%),
-  radial-gradient(ellipse at 50% 80%,rgba(184,134,11,0.05) 0%,transparent 50%),
-  linear-gradient(180deg,#0a0908 0%,#0f0e0a 40%,#12110c 70%,#0a0908 100%);
-z-index:0}
+  radial-gradient(ellipse at 80% 20%,rgba(45,106,79,0.06) 0%,transparent 50%)}
 .hero-shapes{position:absolute;inset:0;z-index:1;overflow:hidden}
 .hero-shape{position:absolute;border-radius:50%;opacity:0.03;animation:floatShape 20s ease-in-out infinite}
 .hero-shape:nth-child(1){width:600px;height:600px;background:var(--gold);top:-200px;right:-100px;animation-delay:0s}
@@ -114,7 +114,9 @@ z-index:0}
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
 .service-card{
   background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);
-  padding:2.5rem;transition:var(--transition);position:relative;overflow:hidden}
+  padding:0;transition:var(--transition);position:relative;overflow:hidden}
+.service-card-img{width:100%;height:200px;object-fit:cover;display:block}
+.service-card-body{padding:2rem 2.5rem 2.5rem}
 .service-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:var(--transition)}
@@ -162,6 +164,7 @@ z-index:0}
 .team-photo{
   width:100%;height:280px;position:relative;overflow:hidden;
   background:linear-gradient(135deg,rgba(184,134,11,0.08),rgba(45,106,79,0.08))}
+.team-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
 .team-photo-inner{
   width:100%;height:100%;display:flex;align-items:center;justify-content:center;
   font-family:var(--font-heading);font-size:4rem;color:rgba(184,134,11,0.15);font-weight:300}
@@ -176,6 +179,9 @@ z-index:0}
   border-radius:var(--radius);overflow:hidden;position:relative;
   background:linear-gradient(135deg,rgba(184,134,11,0.06),rgba(45,106,79,0.06));
   transition:var(--transition);cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery-item-label{position:absolute;bottom:1rem;left:1rem;z-index:2;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--white);opacity:0;transition:var(--transition);font-weight:400}
+.gallery-item:hover .gallery-item-label{opacity:1}
 .gallery-item::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 50%,rgba(10,9,8,0.6));opacity:0;transition:var(--transition)}
@@ -242,9 +248,10 @@ z-index:0}
   height:160px;position:relative;display:flex;align-items:center;justify-content:center;
   overflow:hidden}
 .gift-card-visual::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(184,134,11,0.1),rgba(45,106,79,0.08))}
-.gift-card-visual i{position:relative;z-index:1;color:var(--gold);opacity:0.4}
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(135deg,rgba(184,134,11,0.15),rgba(45,106,79,0.1))}
+.gift-card-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gift-card-visual i{position:relative;z-index:2;color:var(--gold);opacity:0.6}
 .gift-card-body{padding:2rem}
 .gift-card-body h3{font-size:1.3rem;margin-bottom:0.5rem;font-weight:500}
 .gift-card-body p{color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;font-weight:300}
@@ -266,7 +273,8 @@ z-index:0}
   width:48px;height:48px;border-radius:50%;
   background:linear-gradient(135deg,rgba(184,134,11,0.15),rgba(45,106,79,0.1));
   display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-heading);font-size:1.2rem;color:var(--gold)}
+  font-family:var(--font-heading);font-size:1.2rem;color:var(--gold);overflow:hidden;flex-shrink:0}
+.testimonial-avatar img{width:100%;height:100%;object-fit:cover}
 .testimonial-author-info h4{font-family:var(--font-heading);font-size:1.05rem;font-weight:500}
 .testimonial-author-info span{font-size:0.8rem;color:var(--text-muted);font-weight:300}
 .testimonial-badge{
@@ -312,7 +320,8 @@ z-index:0}
 .footer-insta-item{
   aspect-ratio:1;background:linear-gradient(135deg,rgba(184,134,11,0.06),rgba(45,106,79,0.04));
   border-radius:8px;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:var(--transition);border:1px solid var(--border)}
+  cursor:pointer;transition:var(--transition);border:1px solid var(--border);overflow:hidden;position:relative}
+.footer-insta-item img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .footer-insta-item:hover{border-color:var(--gold);transform:scale(1.05)}
 .footer-insta-item i{color:rgba(184,134,11,0.2)}
 .footer-certs{display:flex;gap:1.5rem;margin-top:1rem;flex-wrap:wrap}
@@ -410,7 +419,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
 <!-- Hero -->
 <header class="hero" id="main-content">
-  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-bg-img" role="img" aria-label="Interior luxuoso de spa com ambiente relaxante"></div>
+    <div class="hero-bg-overlay"></div>
+  </div>
   <div class="hero-shapes" aria-hidden="true">
     <div class="hero-shape"></div>
     <div class="hero-shape"></div>
@@ -440,47 +452,65 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
-        <div class="service-icon"><i data-lucide="hand" aria-hidden="true"></i></div>
-        <h3>Massagem Relaxante</h3>
-        <p>Tecnicas ancestrais combinadas com oleos essenciais premium para aliviar tensoes profundas e restaurar a vitalidade do corpo.</p>
-        <span class="service-price">A partir de R$ 180</span>
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=300&fit=crop" alt="Sessao de massagem relaxante com oleos essenciais" class="service-card-img" loading="lazy">
+        <div class="service-card-body">
+          <div class="service-icon"><i data-lucide="hand" aria-hidden="true"></i></div>
+          <h3>Massagem Relaxante</h3>
+          <p>Tecnicas ancestrais combinadas com oleos essenciais premium para aliviar tensoes profundas e restaurar a vitalidade do corpo.</p>
+          <span class="service-price">A partir de R$ 180</span>
+        </div>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon"><i data-lucide="sparkles" aria-hidden="true"></i></div>
-        <h3>Day Spa Premium</h3>
-        <p>Um dia inteiro dedicado ao seu bem-estar com circuito completo: sauna, ofuro, esfoliacao, massagem e tratamento facial.</p>
-        <span class="service-price">A partir de R$ 450</span>
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6c?w=400&h=300&fit=crop" alt="Ambiente premium de day spa com piscina termal" class="service-card-img" loading="lazy">
+        <div class="service-card-body">
+          <div class="service-icon"><i data-lucide="sparkles" aria-hidden="true"></i></div>
+          <h3>Day Spa Premium</h3>
+          <p>Um dia inteiro dedicado ao seu bem-estar com circuito completo: sauna, ofuro, esfoliacao, massagem e tratamento facial.</p>
+          <span class="service-price">A partir de R$ 450</span>
+        </div>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon"><i data-lucide="scan-face" aria-hidden="true"></i></div>
-        <h3>Estetica Facial</h3>
-        <p>Protocolos avancados de rejuvenescimento e hidratacao profunda utilizando cosmeticos de alta performance importados.</p>
-        <span class="service-price">A partir de R$ 220</span>
+        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=300&fit=crop" alt="Tratamento de estetica facial profissional" class="service-card-img" loading="lazy">
+        <div class="service-card-body">
+          <div class="service-icon"><i data-lucide="scan-face" aria-hidden="true"></i></div>
+          <h3>Estetica Facial</h3>
+          <p>Protocolos avancados de rejuvenescimento e hidratacao profunda utilizando cosmeticos de alta performance importados.</p>
+          <span class="service-price">A partir de R$ 220</span>
+        </div>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon"><i data-lucide="gem" aria-hidden="true"></i></div>
-        <h3>Terapia com Pedras</h3>
-        <p>Pedras vulcanicas aquecidas posicionadas estrategicamente para promover relaxamento muscular profundo e equilibrio energetico.</p>
-        <span class="service-price">A partir de R$ 250</span>
+        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=400&h=300&fit=crop" alt="Terapia com pedras quentes vulcanicas" class="service-card-img" loading="lazy">
+        <div class="service-card-body">
+          <div class="service-icon"><i data-lucide="gem" aria-hidden="true"></i></div>
+          <h3>Terapia com Pedras</h3>
+          <p>Pedras vulcanicas aquecidas posicionadas estrategicamente para promover relaxamento muscular profundo e equilibrio energetico.</p>
+          <span class="service-price">A partir de R$ 250</span>
+        </div>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon"><i data-lucide="flower-2" aria-hidden="true"></i></div>
-        <h3>Aromaterapia</h3>
-        <p>Sessoes personalizadas com oleos essenciais puros selecionados para equilibrar emocoes, reduzir estresse e elevar o bem-estar.</p>
-        <span class="service-price">A partir de R$ 160</span>
+        <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=300&fit=crop" alt="Oleos essenciais e velas de aromaterapia" class="service-card-img" loading="lazy">
+        <div class="service-card-body">
+          <div class="service-icon"><i data-lucide="flower-2" aria-hidden="true"></i></div>
+          <h3>Aromaterapia</h3>
+          <p>Sessoes personalizadas com oleos essenciais puros selecionados para equilibrar emocoes, reduzir estresse e elevar o bem-estar.</p>
+          <span class="service-price">A partir de R$ 160</span>
+        </div>
       </div>
       <div class="service-card reveal reveal-delay-3">
-        <div class="service-icon"><i data-lucide="snowflake" aria-hidden="true"></i></div>
-        <h3>Crioterapia</h3>
-        <p>Tecnologia de ponta em tratamentos com frio controlado para recuperacao muscular, reducao de inflamacao e rejuvenescimento.</p>
-        <span class="service-price">A partir de R$ 300</span>
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&h=300&fit=crop" alt="Sessao de crioterapia com tecnologia avancada" class="service-card-img" loading="lazy">
+        <div class="service-card-body">
+          <div class="service-icon"><i data-lucide="snowflake" aria-hidden="true"></i></div>
+          <h3>Crioterapia</h3>
+          <p>Tecnologia de ponta em tratamentos com frio controlado para recuperacao muscular, reducao de inflamacao e rejuvenescimento.</p>
+          <span class="service-price">A partir de R$ 300</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Pricing -->
-<section class="section" id="planos" style="background:linear-gradient(180deg,var(--bg),#0e0d0a,var(--bg))">
+<section class="section" id="planos" style="background:linear-gradient(180deg,rgba(10,9,8,0.92),rgba(14,13,10,0.95),rgba(10,9,8,0.92)),url('https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1400&q=80') center/cover no-repeat fixed">
   <div class="section-inner">
     <div class="section-header">
       <h2 class="reveal">Planos <em>Exclusivos</em></h2>
@@ -550,7 +580,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     </div>
     <div class="team-grid">
       <div class="team-card reveal">
-        <div class="team-photo"><div class="team-photo-inner">DR</div></div>
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=face" alt="Dra. Renata Almeida - Diretora Clinica" loading="lazy"></div>
         <div class="team-info">
           <h3>Dra. Renata Almeida</h3>
           <p class="team-role">Diretora Clinica</p>
@@ -558,7 +588,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
       </div>
       <div class="team-card reveal reveal-delay-1">
-        <div class="team-photo"><div class="team-photo-inner">MS</div></div>
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=300&fit=crop&crop=face" alt="Marcos Santana - Terapeuta Senior" loading="lazy"></div>
         <div class="team-info">
           <h3>Marcos Santana</h3>
           <p class="team-role">Terapeuta Senior</p>
@@ -566,7 +596,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
       </div>
       <div class="team-card reveal reveal-delay-2">
-        <div class="team-photo"><div class="team-photo-inner">CF</div></div>
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face" alt="Camila Ferreira - Aromaterapeuta" loading="lazy"></div>
         <div class="team-info">
           <h3>Camila Ferreira</h3>
           <p class="team-role">Aromaterapeuta</p>
@@ -574,7 +604,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
       </div>
       <div class="team-card reveal reveal-delay-3">
-        <div class="team-photo"><div class="team-photo-inner">LM</div></div>
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Lucas Monteiro - Fisioterapeuta" loading="lazy"></div>
         <div class="team-info">
           <h3>Lucas Monteiro</h3>
           <p class="team-role">Fisioterapeuta</p>
@@ -595,22 +625,28 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     </div>
     <div class="gallery-mosaic reveal">
       <div class="gallery-item">
-        <div class="gallery-placeholder"><i data-lucide="bath" style="width:48px;height:48px" aria-hidden="true"></i><span>Sala de Ofuro</span></div>
+        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&h=400&fit=crop" alt="Terapia com pedras quentes no spa" loading="lazy">
+        <span class="gallery-item-label">Sala de Ofuro</span>
       </div>
       <div class="gallery-item">
-        <div class="gallery-placeholder"><i data-lucide="flame" style="width:32px;height:32px" aria-hidden="true"></i><span>Sauna</span></div>
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop" alt="Sessao de massagem relaxante" loading="lazy">
+        <span class="gallery-item-label">Sauna</span>
       </div>
       <div class="gallery-item">
-        <div class="gallery-placeholder"><i data-lucide="droplets" style="width:32px;height:32px" aria-hidden="true"></i><span>Piscina Termal</span></div>
+        <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&h=400&fit=crop" alt="Piscina termal com ambiente zen" loading="lazy">
+        <span class="gallery-item-label">Piscina Termal</span>
       </div>
       <div class="gallery-item">
-        <div class="gallery-placeholder"><i data-lucide="leaf" style="width:32px;height:32px" aria-hidden="true"></i><span>Jardim Zen</span></div>
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6c?w=600&h=400&fit=crop" alt="Ambiente de relaxamento e bem-estar" loading="lazy">
+        <span class="gallery-item-label">Jardim Zen</span>
       </div>
       <div class="gallery-item">
-        <div class="gallery-placeholder"><i data-lucide="bed-double" style="width:32px;height:32px" aria-hidden="true"></i><span>Suite VIP</span></div>
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&h=400&fit=crop" alt="Oleos essenciais e aromaterapia" loading="lazy">
+        <span class="gallery-item-label">Suite VIP</span>
       </div>
       <div class="gallery-item">
-        <div class="gallery-placeholder"><i data-lucide="coffee" style="width:32px;height:32px" aria-hidden="true"></i><span>Lounge & Cha</span></div>
+        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=400&fit=crop" alt="Tratamento facial profissional" loading="lazy">
+        <span class="gallery-item-label">Lounge & Cha</span>
       </div>
     </div>
   </div>
@@ -779,6 +815,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="gifts-grid">
       <div class="gift-card reveal">
         <div class="gift-card-visual" style="background:linear-gradient(135deg,#1a1510,#0f0e0a)">
+          <img src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=400&h=250&fit=crop" alt="Presente de bem-estar e spa" loading="lazy">
           <i data-lucide="gift" style="width:48px;height:48px" aria-hidden="true"></i>
         </div>
         <div class="gift-card-body">
@@ -790,6 +827,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </div>
       <div class="gift-card reveal reveal-delay-1">
         <div class="gift-card-visual" style="background:linear-gradient(135deg,#1a1510,#12160f)">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=250&fit=crop" alt="Experiencia completa de day spa" loading="lazy">
           <i data-lucide="crown" style="width:48px;height:48px" aria-hidden="true"></i>
         </div>
         <div class="gift-card-body">
@@ -801,6 +839,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </div>
       <div class="gift-card reveal reveal-delay-2">
         <div class="gift-card-visual" style="background:linear-gradient(135deg,#18150e,#0f1210)">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6c?w=400&h=250&fit=crop" alt="Experiencia luxuosa de spa para casais" loading="lazy">
           <i data-lucide="diamond" style="width:48px;height:48px" aria-hidden="true"></i>
         </div>
         <div class="gift-card-body">
@@ -834,7 +873,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
         <p class="testimonial-text">"Depois de meses de estresse no trabalho, o Day Spa Premium foi exatamente o que eu precisava. Sai de la uma pessoa completamente renovada. A equipe e excepcional."</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">AM</div>
+          <div class="testimonial-avatar"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face" alt="Ana Maria Souza" loading="lazy"></div>
           <div class="testimonial-author-info">
             <h4>Ana Maria Souza</h4>
             <span>Executiva, cliente ha 2 anos</span>
@@ -853,7 +892,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
         <p class="testimonial-text">"A terapia com pedras quentes mudou minha qualidade de sono completamente. O Marcos e um profissional incrivel que realmente entende do que faz."</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">RP</div>
+          <div class="testimonial-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Roberto Pereira" loading="lazy"></div>
           <div class="testimonial-author-info">
             <h4>Roberto Pereira</h4>
             <span>Empresario, cliente ha 1 ano</span>
@@ -872,7 +911,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
         <p class="testimonial-text">"Os tratamentos faciais da Dra. Renata sao simplesmente transformadores. Minha pele rejuvenesceu visivelmente em apenas 3 sessoes. Recomendo de olhos fechados!"</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">JC</div>
+          <div class="testimonial-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face" alt="Julia Costa" loading="lazy"></div>
           <div class="testimonial-author-info">
             <h4>Julia Costa</h4>
             <span>Advogada, cliente ha 8 meses</span>
@@ -891,7 +930,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
         <p class="testimonial-text">"Como atleta, a crioterapia do Luxe Wellness acelerou minha recuperacao de forma impressionante. Lucas e um fisioterapeuta de nivel internacional."</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">FM</div>
+          <div class="testimonial-avatar"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop&crop=face" alt="Felipe Martins" loading="lazy"></div>
           <div class="testimonial-author-info">
             <h4>Felipe Martins</h4>
             <span>Atleta profissional, cliente ha 6 meses</span>
@@ -910,7 +949,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
         <p class="testimonial-text">"Presenteei minha mae com o cartao Luxe Experience. Ela disse que foram os dois melhores dias da vida dela. O ambiente e simplesmente magico."</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">CL</div>
+          <div class="testimonial-avatar"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&h=100&fit=crop&crop=face" alt="Carolina Lima" loading="lazy"></div>
           <div class="testimonial-author-info">
             <h4>Carolina Lima</h4>
             <span>Designer, cliente ha 3 meses</span>
@@ -931,10 +970,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <p class="reveal reveal-delay-1">Estamos localizados em uma regiao privilegiada, de facil acesso e com estacionamento proprio.</p>
     </div>
     <div class="location-grid reveal">
-      <div class="location-map">
-        <i data-lucide="map-pin" style="width:48px;height:48px;color:var(--gold);opacity:0.3" aria-hidden="true"></i>
-        <span style="font-size:0.85rem;letter-spacing:1px">Mapa Interativo</span>
-        <span style="font-size:0.75rem;opacity:0.5">Av. Brigadeiro Faria Lima, 3477 - Itaim Bibi, SP</span>
+      <div class="location-map" style="position:relative;overflow:hidden">
+        <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80" alt="Interior luxuoso do spa Luxe Wellness" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,9,8,0.8));display:flex;align-items:flex-end;justify-content:center;padding:1.5rem">
+          <span style="font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)">Av. Brigadeiro Faria Lima, 3477 - Itaim Bibi, SP</span>
+        </div>
       </div>
       <div class="location-info">
         <div class="location-block">
@@ -1009,12 +1049,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="footer-col">
       <h4>Instagram</h4>
       <div class="footer-insta" aria-label="Feed do Instagram">
-        <div class="footer-insta-item"><i data-lucide="image" style="width:20px;height:20px" aria-hidden="true"></i></div>
-        <div class="footer-insta-item"><i data-lucide="image" style="width:20px;height:20px" aria-hidden="true"></i></div>
-        <div class="footer-insta-item"><i data-lucide="image" style="width:20px;height:20px" aria-hidden="true"></i></div>
-        <div class="footer-insta-item"><i data-lucide="image" style="width:20px;height:20px" aria-hidden="true"></i></div>
-        <div class="footer-insta-item"><i data-lucide="image" style="width:20px;height:20px" aria-hidden="true"></i></div>
-        <div class="footer-insta-item"><i data-lucide="image" style="width:20px;height:20px" aria-hidden="true"></i></div>
+        <div class="footer-insta-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=150&h=150&fit=crop" alt="Massagem relaxante" loading="lazy"></div>
+        <div class="footer-insta-item"><img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=150&h=150&fit=crop" alt="Pedras quentes" loading="lazy"></div>
+        <div class="footer-insta-item"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=150&h=150&fit=crop" alt="Tratamento facial" loading="lazy"></div>
+        <div class="footer-insta-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6c?w=150&h=150&fit=crop" alt="Ambiente spa" loading="lazy"></div>
+        <div class="footer-insta-item"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=150&h=150&fit=crop" alt="Aromaterapia" loading="lazy"></div>
+        <div class="footer-insta-item"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=150&h=150&fit=crop" alt="Piscina spa" loading="lazy"></div>
       </div>
     </div>
   </div>
